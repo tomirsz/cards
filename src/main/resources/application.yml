@@ -1,0 +1,25 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: cards
+  profiles:
+    active: production
+
+# ACTUATOR INFO
+management:
+  endpoints:
+    web:
+      exposure:
+        include: {'info','health','refresh','metrics','mappings'}
+
+info:
+  app:
+    name: "Cards"
+    version: "0.0.1"
+    profile: ${spring.profiles.active}
+  serverInfo:
+    port: ${server.port}
+
+eureka:
+  client: ${eureka-client}
